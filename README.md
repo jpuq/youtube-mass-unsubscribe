@@ -1,54 +1,100 @@
-# youtube mass-unsubscribe
+a browser-console javascript script that helps clean up youtube subscriptions.
 
-a simple javascript console script that unsubscribes you from youtube channels automatically.
+it shows the channels it finds in the console, lets you add channel names to keep, and unsubscribes from the remaining channels after you type a confirmation.
 
-## warning
-
-this can unsubscribe you from a lot of channels fast.
-
-there is no easy undo, so make sure you really want to remove your subscriptions before running it.
-
-## what it does
-
-- finds channels you are subscribed to
-- clicks the subscribed button
-- clicks unsubscribe
-- confirms it
-- keeps going until it is done
-
+it runs only in your browser on youtube. it does not ask for your youtube password, use an external server, or collect your data.
 ## how to use
 
-1. go to this page:
+### 1. open your subscriptions
 
-   `https://www.youtube.com/feed/channels`
+go to:
 
-2. press `ctrl + shift + i`
+`https://www.youtube.com/feed/channels`
 
-3. click the `console` tab
+make sure you are signed into the youtube account you want to clean up.
 
-4. if chrome blocks pasting, type this first:
+### 2. edit your keep list
 
-   ```text
-   allow pasting
-   ```
+open `youtube-mass-unsubscribe.js`.
 
-5. open `youtube-mass-unsubscribe.js` in this github repo
+near the top, find:
 
-6. click `raw`
+```javascript
+const KEEP_CHANNELS = [
+  // "channel name here",
+];
+```
 
-7. copy the code
+add channels you want to keep inside the brackets.
 
-8. paste it in the youtube console and press `enter`
+example:
 
-9. refresh the youtube page if you want to stop it
+```javascript
+const KEEP_CHANNELS = [
+  "Markiplier",
+  "3Blue1Brown",
+  "Caillou - WildBrain",
+];
+```
 
-## important
+use one channel name per line and remember the comma after each name.
 
-- use youtube on a computer
-- keep youtube in english
-- youtube can change its website, so the script may stop working later
-- this is not made by youtube or google
+### 3. test with five channels
 
-## license
+leave this setting as:
 
-mit
+```javascript
+const MAX_UNSUBSCRIBES = 5;
+```
+
+this means the script can remove only five channels on the first test.
+
+### 4. open the browser console
+
+press:
+
+```text
+ctrl + shift + i
+```
+
+click the `console` tab.
+
+if chrome warns you about pasting code, type this manually and press enter:
+
+```text
+allow pasting
+```
+
+### 5. run the script
+
+copy all code from `youtube-mass-unsubscribe.js`.
+
+paste it into the youtube console and press `enter`.
+
+the script will:
+
+1. scroll and find loaded subscriptions
+2. print a table of channel names
+3. mark each channel as `keep` or `unsubscribe`
+4. ask you to type `UNSUBSCRIBE`
+5. unsubscribe from up to five channels
+
+### 6. run it on all channels
+
+only after the test works correctly, change:
+
+```javascript
+const MAX_UNSUBSCRIBES = 5;
+```
+
+to:
+
+```javascript
+const MAX_UNSUBSCRIBES = Infinity;
+```
+
+then run the script again.
+
+### stop the script
+
+refresh the youtube page to stop it.
