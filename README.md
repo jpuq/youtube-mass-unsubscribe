@@ -31,9 +31,9 @@ example:
 
 ```javascript
 const KEEP_CHANNELS = [
-  "Markiplier",
-  "3Blue1Brown",
-  "Caillou - WildBrain",
+  "Jidion",
+  "Beta Squad",
+  "Mr Beast",
 ];
 ```
 
